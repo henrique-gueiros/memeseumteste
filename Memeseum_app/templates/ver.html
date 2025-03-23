@@ -7,4 +7,10 @@
 {% else %}
     <p>Sem imagem disponível</p>
 {% endif %}
+<form action="{% url 'delete' meme.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">excluir</button>
+
+</form>
+
 {% endfor %}

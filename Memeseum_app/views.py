@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import Meme
 from django.contrib import messages
 
@@ -44,5 +44,11 @@ def ver(request):
 def edit(request):
     return render(request,'edit.html')
 
-def delete(request):
-    return render(request,'delete.html')
+def delete(request,id):
+    
+    meme = get_object_or_404(Meme,id=id)
+    meme.delete()
+
+
+
+    return redirect ('ver')
