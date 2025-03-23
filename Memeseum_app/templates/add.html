@@ -12,7 +12,6 @@
 
     <label for="imagem">Imagem:</label>
     
-    <!-- Exibe a imagem atual, se houver -->
     {% if meme.imagem %}
         <div>
             <img src="{{ meme.imagem.url }}" alt="Imagem atual" style="max-width: 200px; margin-bottom: 10px;">
@@ -20,7 +19,6 @@
         </div>
     {% endif %}
     
-    <!-- Campo para o usuário escolher uma nova imagem -->
     <input type="file" name="imagem"><br>
 
     <button type="submit">Enviar</button>

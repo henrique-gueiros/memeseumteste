@@ -46,16 +46,19 @@ def edit(request, id):
         meme.nome = request.POST.get('nome')
         meme.descricao = request.POST.get('descricao')
         meme.ano = request.POST.get('ano')
-        meme.imagem = request.FILES.get('imagem')
+
+        if 'imagem' in request.FILES:
+            meme.imagem = request.FILES.get('imagem')
 
         meme.save()
         return redirect('ver')
     
     context = {
-        'meme':meme
+        'meme': meme
     }
 
-    return render(request,'add.html', context)
+    return render(request, 'add.html', context)
+
 
 def delete(request,id):
     
