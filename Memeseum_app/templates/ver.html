@@ -1,16 +1,22 @@
 {% for meme in memes %}
-<p>{{meme.nome}}</p>
-<p>{{meme.descricao}}</p>
-<p>{{meme.ano}}</p>
+<p>{{ meme.nome }}</p>
+<p>{{ meme.descricao }}</p>
+<p>{{ meme.ano }}</p>
+
 {% if meme.imagem %}
     <img src="{{ meme.imagem.url }}" alt="Imagem do meme">
 {% else %}
     <p>Sem imagem disponível</p>
 {% endif %}
+
 <form action="{% url 'delete' meme.id %}" method="POST">
     {% csrf_token %}
-    <button type="submit">excluir</button>
-
+    <button type="submit">Excluir</button>
 </form>
 
+<!-- Formulário para editar o meme -->
+<form action="{% url 'edit' meme.id %}" method="GET">
+    {% csrf_token %}
+    <button type="submit">Editar</button>
+</form>
 {% endfor %}

@@ -39,8 +39,23 @@ def ver(request):
 
     return render(request,'ver.html',context)
 
-def edit(request):
-    return render(request,'edit.html')
+def edit(request, id):
+    meme = Meme.objects.filter(id=id).first()
+
+    if request.method == 'POST':
+        meme.nome = request.POST.get('nome')
+        meme.descricao = request.POST.get('descricao')
+        meme.ano = request.POST.get('ano')
+        meme.imagem = request.FILES.get('imagem')
+
+        meme.save()
+        return redirect('ver')
+    
+    context = {
+        'meme':meme
+    }
+
+    return render(request,'add.html', context)
 
 def delete(request,id):
     

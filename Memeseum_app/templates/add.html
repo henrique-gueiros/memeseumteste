@@ -1,8 +1,27 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="text" name="nome" placeholder="Nome"><br>
-    <input type="text" name="descricao" placeholder="Descrição"><br>
-    <input type="number" name="ano" placeholder="Ano"><br>
-    <input type="file" name="imagem" ><br>
+    
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" placeholder="Nome" value="{{ meme.nome }}"><br>
+
+    <label for="descricao">Descrição:</label>
+    <input type="text" name="descricao" placeholder="Descrição" value="{{ meme.descricao }}"><br>
+
+    <label for="ano">Ano:</label>
+    <input type="number" name="ano" placeholder="Ano" value="{{ meme.ano }}"><br>
+
+    <label for="imagem">Imagem:</label>
+    
+    <!-- Exibe a imagem atual, se houver -->
+    {% if meme.imagem %}
+        <div>
+            <img src="{{ meme.imagem.url }}" alt="Imagem atual" style="max-width: 200px; margin-bottom: 10px;">
+            <p>Imagem atual</p>
+        </div>
+    {% endif %}
+    
+    <!-- Campo para o usuário escolher uma nova imagem -->
+    <input type="file" name="imagem"><br>
+
     <button type="submit">Enviar</button>
 </form>
