@@ -2,5 +2,9 @@
 <p>{{meme.nome}}</p>
 <p>{{meme.descricao}}</p>
 <p>{{meme.ano}}</p>
-<!-- <img src={{meme.imagem.url}}> -->
+{% if meme.imagem %}
+    <img src="{{ meme.imagem.url }}" alt="Imagem do meme">
+{% else %}
+    <p>Sem imagem disponível</p>
+{% endif %}
 {% endfor %}
