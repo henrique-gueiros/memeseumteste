@@ -10,7 +10,7 @@ def add(request):
         nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
         ano = request.POST.get('ano')
-        imagem = request.POST.get('imagem')
+        imagem = request.FILES.get('imagem')
 
         meme = Meme(
             nome =nome,
@@ -20,8 +20,6 @@ def add(request):
         )
 
         try:
-
-
             meme.save()
             messages.success(request, "Meme adicionado com sucesso!")
             return redirect ('home')
