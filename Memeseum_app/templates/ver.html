@@ -1,22 +1,76 @@
-{% for meme in memes %}
-<p>{{ meme.nome }}</p>
-<p>{{ meme.descricao }}</p>
-<p>{{ meme.ano }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memeseum</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
 
-{% if meme.imagem %}
-    <img src="{{ meme.imagem.url }}" alt="Imagem do meme">
-{% else %}
-    <p>Sem imagem disponível</p>
-{% endif %}
+</head>
 
-<form action="{% url 'delete' meme.id %}" method="POST">
-    {% csrf_token %}
-    <button type="submit">Excluir</button>
-</form>
+<body>
+    <!-- Main Container -->
+    <div id="main">
+        <!-- Primeira Página do Conteúdo -->
+        <div id="page1">
+            <!-- Navegação -->
+            <div id="nav">
+                <h5>Recife, BR</h5>
+                <a href="{% url 'home' %}"><img src="{% static '/IMG/Memeseu.png' %}" alt="Memeseu Logo"></a>
+            </div>
+            <h1>MEGALERIA</h1>
+            <div id="subtitulo">
+                <h2>A MAIOR E MELHOR GALERIA DE MEMES!</h3>
+            </div>
+            <section class="fade-in memes">
+                <div class="meme-container">
+                    {% for meme in memes %}
+                        <div class="meme-card" data-meme-id="{{ meme.id }}">
+                            <!-- Imagem à esquerda -->
+                            <div class="meme-image">
+                                <img src="{{ meme.imagem.url }}" alt="Imagem do meme">
+                            </div>
+                            <!-- Informações à direita -->
+                            <div class="meme-info">
+                                <h2>{{ meme.nome }}</h2>
+                                <p class="descricao">{{ meme.descricao }}</p>
+                                <p class="ano"><em>{{ meme.ano }}</em></p>
+                                <div class="buttons">
+                                    <i class="ri-heart-line like-icon" data-meme-id="{{ meme.id }}"></i>
+                                    <form action="{% url 'delete' meme.id %}" method="POST" class="delete-form">
+                                        {% csrf_token %}
+                                        <button class="delete-btn" type="submit">Excluir</button>
+                                    </form>
+                                    <form action="{% url 'edit' meme.id %}" method="GET">
+                                        {% csrf_token %}
+                                        <button class="edit-btn" type="submit">Editar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+            <!-- Seção de Botões -->
+    <section id="buttons-section">
+        <a href="{% url 'add' %}"><button id="add-meme">Adicionar Memes</button></a>
+        <a href="{% url 'ver' %}"><button id="view-memes">Visualizar Memes</button></a>
+    </section>
 
-<!-- Formulário para editar o meme -->
-<form action="{% url 'edit' meme.id %}" method="GET">
-    {% csrf_token %}
-    <button type="submit">Editar</button>
-</form>
-{% endfor %}
+    </div>
+    <!-- Script para o Locomotive Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    
+    <!-- Script do GSAP para animações -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+        integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="{% static 'JS/scriptver.js' %}"></script>
+</body>
+
+</html>

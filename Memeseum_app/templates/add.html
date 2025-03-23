@@ -1,25 +1,66 @@
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" placeholder="Nome" value="{{ meme.nome }}"><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memeseum</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
 
-    <label for="descricao">Descrição:</label>
-    <input type="text" name="descricao" placeholder="Descrição" value="{{ meme.descricao }}"><br>
+</head>
 
-    <label for="ano">Ano:</label>
-    <input type="number" name="ano" placeholder="Ano" value="{{ meme.ano }}"><br>
-
-    <label for="imagem">Imagem:</label>
-    
-    {% if meme.imagem %}
-        <div>
-            <img src="{{ meme.imagem.url }}" alt="Imagem atual" style="max-width: 200px; margin-bottom: 10px;">
-            <p>Imagem atual</p>
+<body>
+    <!-- Main Container -->
+    <div id="main">
+        <!-- Primeira Página do Conteúdo -->
+        <div id="page1">
+            <!-- Navegação -->
+            <div id="nav">
+                <h5>Recife, BR</h5>
+                <a href="{% url 'home' %}"><img src="{% static '/IMG/Memeseu.png' %}" alt="Memeseu Logo"></a>
+            </div>
+            <form method="POST" enctype="multipart/form-data" class="meme-form">
+                {% csrf_token %}
+                
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" placeholder="Digite o nome do meme" value="{{ meme.nome }}">
+            
+                <label for="descricao">Descrição:</label>
+                <textarea name="descricao" placeholder="Escreva uma descrição">{{ meme.descricao }}</textarea>
+            
+                <label for="ano">Ano:</label>
+                <input type="number" name="ano" placeholder="Ano de origem" value="{{ meme.ano }}">
+            
+                <label for="imagem">Imagem atual:</label>
+                {% if meme.imagem %}
+                    <div class="image-preview">
+                        <img src="{{ meme.imagem.url }}" alt="Imagem atual">
+                    </div>
+                {% endif %}
+                
+                <input type="file" name="imagem">
+            
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
         </div>
-    {% endif %}
-    
-    <input type="file" name="imagem"><br>
+            <!-- Seção de Botões -->
+    <section id="buttons-section">
+        <a href="{% url 'add' %}"><button id="add-meme">Adicionar Memes</button></a>
+        <a href="{% url 'ver' %}"><button id="view-memes">Visualizar Memes</button></a>
+    </section>
 
-    <button type="submit">Enviar</button>
-</form>
+    </div>
+    <!-- Script para o Locomotive Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    
+    <!-- Script do GSAP para animações -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+        integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="{% static 'JS/scriptadd.js' %}"></script>
+</body>
+
+</html>

@@ -1,6 +1,73 @@
-<h1>MEMESEUM</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<a href="{% url 'add' %}">Add Memes</a>
-<a href="{% url 'ver' %}">Ver Memes</a>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memeseum</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+</head>
 
+<body>
+    <!-- Main Container -->
+    <div id="main">
+        <!-- Primeira Página do Conteúdo -->
+        <div id="page1">
+            <!-- Navegação -->
+            <div id="nav">
+                <h5>Recife, BR</h5>
+                <a href="{% url 'home' %}"><img src="{% static '/IMG/Memeseu.png' %}" alt="Memeseu Logo"></a>
+            </div>
+            <!-- Seção de Elementos -->
+            <div id="elems">
+                <!-- Elemento 1: Imagem e Texto -->
+                <div id="elem1">
+                    <div id="image-div">
+                        <img src="{% static '/IMG/eskine.jpg' %}" alt="Resenha do Arrocha">
+                    </div>
+                    <h4>Calma vida, tá de boa! <span>NOVO</span></h4>
+                    <p>Boto na cama, te soco a banana, o que é que tu faz? Se eu te boto na cama, te soco a banana, o que é que tu faz?</p>
+                </div>
+                <!-- Elemento 2: Título do MemeMuseu -->
+                <div id="elem2">
+                    <h2>MEMESEUM!</h2>
+                    <h3>Uma exposição <br>com os memes que <br>moldaram o mundo.</h3>
+                    <h6>Aprecie com moderação (ou não).</h6>
+                </div>
+                <!-- Elemento 3: Imagem e Texto sobre Kanye West -->
+                <div id="elem3">
+                    <div id="image-div">
+                        <img src="{% static '/IMG/kayne.jpg' %}" alt="Kanye West">
+                    </div>
+                    <h4>ENLOUQUECEU! <span>NOVO</span></h4>
+                    <p>Kayne West despirocou da cabeça! Ele tem feito umas declarações bem polêmicas que deixam muitos fãs surpresos.</p>
+                </div>
+            </div>
+            <!-- Título principal do site -->
+            <h1>MEMESEUM</h1>
+        </div>
+            <!-- Seção de Botões -->
+    <section id="buttons-section">
+        <a href="{% url 'add' %}"><button id="add-meme">Adicionar Memes</button></a>
+        <a href="{% url 'ver' %}"><button id="view-memes">Visualizar Memes</button></a>
+    </section>
 
+    </div>
+
+    <!-- Script para o Locomotive Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    
+    <!-- Script do GSAP para animações -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+        integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Script personalizado -->
+    <script src="{% static 'JS/script.js' %}"></script>
+</body>
+
+</html>
