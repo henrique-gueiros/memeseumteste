@@ -21,28 +21,31 @@
                 <h5>Recife, BR</h5>
                 <a href="{% url 'home' %}"><img src="{% static '/IMG/Memeseu.png' %}" alt="Memeseu Logo"></a>
             </div>
-            <form method="POST" enctype="multipart/form-data" class="meme-form">
+            <form method="POST" enctype="multipart/form-data" class="meme-form" id="memeForm">
                 {% csrf_token %}
-                
+            
                 <label for="nome">Nome:</label>
-                <input type="text" name="nome" placeholder="Digite o nome do meme" value="{{ meme.nome }}">
+                <input type="text" name="nome" id="nome" placeholder="Digite o nome do meme" value="{{ meme.nome }}">
             
                 <label for="descricao">Descrição:</label>
-                <textarea name="descricao" placeholder="Escreva uma descrição">{{ meme.descricao }}</textarea>
+                <textarea name="descricao" id="descricao" placeholder="Escreva uma descrição">{{ meme.descricao }}</textarea>
             
                 <label for="ano">Ano:</label>
-                <input type="number" name="ano" placeholder="Ano de origem" value="{{ meme.ano }}">
+                <input type="number" name="ano" id="ano" placeholder="Ano de origem" value="{{ meme.ano }}">
             
-                <label for="imagem">Imagem atual:</label>
+                <label for="imagem">Imagem:</label>
                 {% if meme.imagem %}
                     <div class="image-preview">
-                        <img src="{{ meme.imagem.url }}" alt="Imagem atual">
+                        <img src="{{ meme.imagem.url }}" alt="Imagem atual" id="previewImage">
                     </div>
                 {% endif %}
                 
-                <input type="file" name="imagem">
+                <input type="file" name="imagem" id="imagem">
+                
+                <!-- Mensagem de erro -->
+                <p id="errorMessage" class="error-message"></p>
             
-                <button type="submit" class="submit-btn">Enviar</button>
+                <button type="submit" class="submit-btn" id="submitButton">Enviar</button>
             </form>
         </div>
             <!-- Seção de Botões -->

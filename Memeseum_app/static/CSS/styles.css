@@ -466,3 +466,12 @@ html, body {
     border-radius: 8px;
     margin-bottom: 5px;
 }
+
+/* Mensagem de erro */
+.error-message {
+    color: #B43B12;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+}
