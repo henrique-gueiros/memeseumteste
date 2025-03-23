@@ -12,21 +12,34 @@ def add(request):
         ano = request.POST.get('ano')
         imagem = request.POST.get('imagem')
 
-        Meme = Meme(
-            nome = nome,
+        meme = Meme(
+            nome =nome,
             descricao = descricao,
             ano = ano,
             imagem = imagem
         )
 
-        Meme.save()
-        messages.success(request, "Meme adicionado com sucesso!")
-        return redirect ('home')
+        try:
+
+
+            meme.save()
+            messages.success(request, "Meme adicionado com sucesso!")
+            return redirect ('home')
+        except:
+            messages.error(request,"opa")
 
     return render(request,'add.html')
 
 def ver(request):
-    return render(request,'ver.html')
+
+    
+    memes = Meme.objects.all()
+
+    context = {
+        'memes':memes
+    }
+
+    return render(request,'ver.html',context)
 
 def edit(request):
     return render(request,'edit.html')

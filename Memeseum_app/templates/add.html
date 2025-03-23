@@ -1,19 +1,8 @@
-<form action="." method="POST">
+<form method="POST">
     {% csrf_token %}
-    <div class="form-group">
-        <label for="nome">Nome: </label>
-        <input type="text" name="nome" id="nome" value="{{Meme.nome}}">
-    </div>
-    <div class="form-group">
-        <label for="descricao">Descrição: </label>
-        <input type="text" name="descricao" id="descricao" value="{{Meme.descricao}}">
-    </div>
-    <div class="form-group">
-        <label for="ano">Ano (YYYY): </label>
-        <input type="number" name="ano" id="ano" value="{{Meme.ano}}"></div>
-    <div class="form-group">
-        <label for="nome">Imagem: </label>
-        <input type="file" name="imagem" accept="image/*" id="imagem" value="{{Meme.imagem}}"></div>
-    <div class="form-group"></div>
+    <input type="text" name="nome" placeholder="Nome"><br>
+    <input type="text" name="descricao" placeholder="Descrição"><br>
+    <input type="number" name="ano" placeholder="Ano"><br>
+    <input type="file" name="imagem"><br>
     <button type="submit">Enviar</button>
 </form>
