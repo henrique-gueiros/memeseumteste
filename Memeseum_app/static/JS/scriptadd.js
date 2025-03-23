@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const anoInput = document.getElementById("ano");
     const imagemInput = document.getElementById("imagem");
     const previewImage = document.getElementById("previewImage");
+    const submitButton = document.getElementById("submitButton");
     const errorMessage = document.getElementById("errorMessage");
+    const successMessage = document.getElementById("successMessage");
 
     // Efeito de feedback ao digitar
     function addFocusEffect(input) {
@@ -53,5 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
             errorMessage.textContent = "Ano inválido!";
             return;
         }
+
+        // Animação do botão ao enviar
+        submitButton.classList.add("loading");
+        submitButton.textContent = "Enviando...";
+
+        setTimeout(() => {
+            submitButton.classList.remove("loading");
+            submitButton.textContent = "Enviar";
+            successMessage.classList.remove("hidden");
+
+            // Enviar o formulário após validação e animação
+            form.submit();
+        }, 1500);
     });
 });

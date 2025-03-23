@@ -469,9 +469,44 @@ html, body {
 
 /* Mensagem de erro */
 .error-message {
-    color: #B43B12;
+    color: red;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
     margin-top: 5px;
+}
+
+/* Mensagem de sucesso */
+.success-message {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 10px;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Esconde a mensagem de sucesso */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Animação do botão ao enviar */
+.submit-btn.loading {
+    background-color: #8A2A04;
+    animation: pulse 0.8s infinite alternate;
+}
+
+/* Efeito de pulsação */
+@keyframes pulse {
+    from {
+        transform: scale(1.0);
+    }
+    to {
+        transform: scale(1.05);
+    }
 }
