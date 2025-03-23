@@ -12,14 +12,23 @@ html, body {
 #main {
     background-color: #222;
     overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #page1 {
     background-color: #C4BCB3;
     position: relative;
     overflow: hidden;
+    min-height: 100vh; /* Pelo menos 100% da altura da tela */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center;
 }
 
+/* Navegação responsiva */
 #nav {
     height: 80px;
     width: 100%;
@@ -28,6 +37,7 @@ html, body {
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #222;
+    flex-wrap: wrap;
 }
 
 #nav img {
@@ -54,12 +64,13 @@ html, body {
     text-align: right;
 }
 
+/* Seção principal */
 #elems {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    flex-wrap: wrap; /* Evita sobreposição em telas menores */
+    flex-wrap: wrap;
 }
 
 #elems > div {
@@ -71,13 +82,11 @@ html, body {
 #elem1 {
     width: 30%;
     height: 100%;
-    /* background-color: blue; */
 }
 
 #elem2 {
     width: 30%;
     height: 100%;
-    /* background-color: blue; */
     border-right: 2px solid #acacac;
     padding: 20px 60px;
     text-align: center;
@@ -186,15 +195,16 @@ html, body {
 }
 
 #page1 h1 {
-    font-size: 285px;
-    letter-spacing: -25px;
+    font-size: clamp(50px, 17vw, 285px); /* Min 50px, Ideal 15vw, Máx 285px */
+    letter-spacing: clamp(-5px, -1.5vw, -25px); /* Min -5px, Ideal -1.5vw, Máx -25px */
+    line-height: clamp(70px, 10vw, 215px); /* Min 70px, Ideal 10vw, Máx 215px */
     font-weight: 100;
     font-family: canopee;
     background-color: #1C1C19;
     color: #C4BCB3;
-    line-height: 215px;
     width: 96%;
     margin: 2%;
+    text-align: center; /* Garante alinhamento correto em telas pequenas */
 }
 
 @keyframes scroll {
@@ -469,7 +479,7 @@ html, body {
 
 /* Mensagem de erro */
 .error-message {
-    color: red;
+    color: #B43B12;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
@@ -507,6 +517,157 @@ html, body {
         transform: scale(1.0);
     }
     to {
-        transform: scale(1.05);
+        transform: scale(1.025);
+    }
+}
+
+/* Estilização do Modal */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Imagem dentro do modal */
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Botão de fechar */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #B43B12;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 1024px) {
+    #elems {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #elem1, #elem2, #elem3 {
+        width: 90%;
+        text-align: center;
+    }
+
+    #elem2 {
+        padding: 15px;
+    }
+
+}
+
+/* Responsividade para telas menores que 768px */
+@media (max-width: 768px) {
+    #nav {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 15px;
+    }
+
+    #subtitulo h2 {
+        font-family: domain;
+        font-size: 50px;
+        font-weight: 100;
+    }
+
+    #elem2 {
+        padding: 10px;
+    }
+
+    #nav h5, #nav i {
+        width: 100%;
+        text-align: center;
+    }
+
+    #elems {
+        padding: 10px;
+    }
+
+    #elem1, #elem2, #elem3 {
+        width: 100%;
+    }
+
+    #buttons-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    #buttons-section button {
+        width: 90%;
+        margin: 5px 0;
+    }
+}
+
+/* Responsividade para dispositivos móveis pequenos */
+@media (max-width: 480px) {
+    #elems {
+        padding: 5px;
+    }
+
+    #elem2 {
+        padding: 5px;
+    }
+
+    #elems > div {
+        min-width: 100%;
+    }
+
+    #subtitulo h2 {
+        font-family: domain;
+        font-size: 20px;
+        font-weight: 100;
+    }
+
+    .meme-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .meme-image {
+        width: 90%;
+    }
+
+    .meme-info h2 {
+        font-size: 22px;
+    }
+
+    .descricao {
+        font-size: 16px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .delete-btn, .edit-btn {
+        width: 90%;
+        padding: 12px;
     }
 }

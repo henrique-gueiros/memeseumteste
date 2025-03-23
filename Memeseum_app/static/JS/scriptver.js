@@ -3,6 +3,10 @@ const scroll = new LocomotiveScroll({
     smooth: true
 });
 
+function forcedReload() {
+    location.reload(true); // Força o reload da página ignorando o cache
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const likeIcons = document.querySelectorAll(".like-icon");
     const deleteForms = document.querySelectorAll(".delete-form");
@@ -41,5 +45,42 @@ document.addEventListener("DOMContentLoaded", function () {
                 form.submit();
             }, 500);
         });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("meme-modal");
+    const modalImg = document.getElementById("modal-img");
+    const captionText = document.getElementById("caption");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // Seleciona todas as imagens de meme
+    const memeImages = document.querySelectorAll(".meme-image img");
+
+    // Garante que o modal esteja oculto ao carregar a página
+    modal.style.display = "none";
+
+    // Adiciona evento de clique a cada imagem de meme
+    memeImages.forEach(img => {
+        img.addEventListener("click", function () {
+            console.log("Imagem clicada"); // Adicione um log para ver quando isso acontece
+            modal.style.display = "flex";  // Torna o modal visível
+            modalImg.src = this.src;      // Coloca a imagem da meme no modal
+            captionText.innerHTML = this.alt; // Coloca a legenda
+        });
+    });
+
+    // Fechar o modal ao clicar no botão "X"
+    closeBtn.addEventListener("click", function () {
+        console.log("Modal fechado"); // Adicione um log para verificar
+        modal.style.display = "none";  // Oculta o modal
+    });
+
+    // Fechar o modal ao clicar fora da imagem
+    modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            console.log("Clique fora da imagem"); // Adicione um log para verificar
+            modal.style.display = "none";  // Oculta o modal
+        }
     });
 });
