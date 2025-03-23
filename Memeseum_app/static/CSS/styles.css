@@ -284,6 +284,7 @@ html, body {
 
 /* Efeito de Zoom ao passar o mouse */
 .meme-image:hover img {
+    cursor: pointer;
     transform: scale(1.05);
 }
 
@@ -541,7 +542,6 @@ html, body {
     max-width: 90%;
     max-height: 90%;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
     transition: transform 0.3s ease-in-out;
 }
 
